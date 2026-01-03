@@ -16,6 +16,7 @@
     along with this program. If not, see <https://www.gnu.org/licenses/>
 */
 
+window.disableInputs = false;
 const keyDownMap = new Map(); // For 1-tap only keys
 
 window.setupInput = () => {
@@ -63,16 +64,19 @@ window.setupInput = () => {
     canvas.onmousemove = e => window.input.mouse(e.clientX * scale, e.clientY * scale);
     
     canvas.onmousedown = e => {
+        if (window.disableInputs) return;
         window.input.flushInputHooks();
         window.input.keyDown(e.button + 1);
     }
 
     canvas.onmouseup = e => {
+        if (window.disableInputs) return;
         window.input.flushInputHooks();
         window.input.keyUp(e.button + 1);
     }
 
     window.onkeydown = e => {
+        if (window.disableInputs) return;
         if (e.repeat) return;
         window.input.flushInputHooks();
         if(e.keyCode >= 112 && e.keyCode <= 130 && e.keyCode !== 113) return;
@@ -91,6 +95,7 @@ window.setupInput = () => {
     }
 
     window.onkeyup = e => {
+        if (window.disableInputs) return;
         window.input.flushInputHooks();
         if(e.keyCode >= 112 && e.keyCode <= 130 && e.keyCode !== 113) return;
         window.input.keyUp(e.keyCode);

@@ -860,6 +860,8 @@ class ASMConsts {
     }
 
     static enableTyping(left, top, width, height, enabled) {
+        if (window.disableInputs) return
+        
         window.setTyping(true);
         Module.textInputContainer.style.display = "block";
         Module.textInputContainer.style.position = "absolute";
@@ -883,6 +885,8 @@ class ASMConsts {
     }
 
     static focusCanvas() {
+        if (window.disableInputs) return;
+
         const canvas = document.getElementById("canvas");
         if(document.activeElement && document.activeElement !== canvas) document.activeElement.blur()
         canvas.focus();

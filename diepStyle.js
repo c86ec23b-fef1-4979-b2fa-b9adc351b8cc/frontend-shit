@@ -540,6 +540,7 @@ function initDiepStyle() {
         const modal = document.getElementById('diepStyleImportModal');
         const textArea = document.getElementById('diepStyleImportText');
         if (textArea) textArea.value = '';
+        textArea.focus();
         if (modal) modal.classList.add('active');
     }
 
